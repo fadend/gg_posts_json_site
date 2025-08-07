@@ -16,8 +16,8 @@ class PostsDisplay {
     this.indexBaseUrl = location.href.replace(/#.*/, "").replace(/\?.*/, "");
     this.baseUrl = parentElem.dataset.baseUrl || undefined;
     if (this.baseUrl) {
-        this.baseUrl = new URL(this.baseUrl, location.href).href;
-        console.log("baseUrl", this.baseUrl);
+      this.baseUrl = new URL(this.baseUrl, location.href).href;
+      console.log("baseUrl", this.baseUrl);
     }
     this.posts = posts;
     this.urlParams = urlParams;
@@ -53,7 +53,7 @@ class PostsDisplay {
     label.appendChild(document.createTextNode(optLabel || page));
     let newPagesFromEnd = this.numPages - page;
     if (newPagesFromEnd === this.pagesFromEnd) {
-        return label;
+      return label;
     }
     const a = document.createElement("a");
     a.appendChild(label);
@@ -69,13 +69,13 @@ class PostsDisplay {
     div.appendChild(document.createTextNode("Page: "));
     const currentPage = this.numPages - this.pagesFromEnd;
     if (currentPage > 1) {
-        div.appendChild(this.getLinkElemForPage(currentPage - 1, "Prev"));
+      div.appendChild(this.getLinkElemForPage(currentPage - 1, "Prev"));
     }
     for (let page = 1; page <= this.numPages; page++) {
-        div.appendChild(this.getLinkElemForPage(page));
+      div.appendChild(this.getLinkElemForPage(page));
     }
     if (currentPage < this.numPages) {
-        div.appendChild(this.getLinkElemForPage(currentPage + 1, "Next"));
+      div.appendChild(this.getLinkElemForPage(currentPage + 1, "Next"));
     }
     return div;
   }
