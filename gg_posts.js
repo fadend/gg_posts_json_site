@@ -17,7 +17,6 @@ class PostsDisplay {
     this.baseUrl = parentElem.dataset.baseUrl || undefined;
     if (this.baseUrl) {
       this.baseUrl = new URL(this.baseUrl, location.href).href;
-      console.log("baseUrl", this.baseUrl);
     }
     this.posts = posts;
     this.urlParams = urlParams;
