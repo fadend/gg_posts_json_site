@@ -1,3 +1,17 @@
+/**
+ * Displays a page worth of posts within `parentElem`.
+ *
+ * Looks for the following "data-" attributes on `parentElem`:
+ *   - "data-json-url": relative path or URL to the JSON file with posts data.
+ *     Defaults to "posts.json".
+ *   - "data-base-url": relative path or URL to be used in interpreting the paths in the JSON.
+ *     Defaults to "".
+ *
+ * Query params (taken from `urlParams`):
+ *   - "posts_per_page": Number of posts to display on each page.
+ *   - "posts_pages_from_end": Number of pages offset from last page. 0 = last page,
+ *     1 = second to last, etc.
+ */
 class PostsDisplay {
   static async create(parentElem, urlParams) {
     const postsUrl = parentElem.dataset.jsonUrl || "posts.json";
@@ -42,7 +56,9 @@ class PostsDisplay {
       .join("");
     const div = document.createElement("div");
     div.classList.add("post");
-    div.innerHTML = `<b><a href="${path}">${post.title}</a></b> (<em>posted ${post.post_date}</em>)<br>${post.initial_text}<br>${thumbnails}`;
+    div.innerHTML =
+      `<h2 class="post-heading"><a href="${path}">${post.title}</a></h2>` +
+      `<em>Posted ${post.post_date}</em>. ${post.initial_text}<br>${thumbnails}`;
     return div;
   }
 
