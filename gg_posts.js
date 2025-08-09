@@ -51,7 +51,7 @@ class PostsDisplay {
     const thumbnails = post.thumbnails
       .map((src, i) => {
         src = new URL(src, this.baseUrl).href;
-        return `<a href="${path}#img-${i + 1}"><img src="${src}"></a>`;
+        return `<a class="post-thumbnail" href="${path}#img-${i + 1}"><img src="${src}"></a>`;
       })
       .join("");
     const div = document.createElement("div");
