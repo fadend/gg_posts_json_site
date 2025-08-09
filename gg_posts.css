@@ -5,9 +5,11 @@
   border-top: solid gray 1px;
   border-left: solid gray 1px;
   padding-bottom: 0.25rem;
+  padding-left: 0.25rem;
 }
 .post-heading {
   font-size: 1.2em;
   margin: 0;
   padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
 }
