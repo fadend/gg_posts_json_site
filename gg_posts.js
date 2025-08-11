@@ -56,9 +56,18 @@ class PostsDisplay {
       .join("");
     const div = document.createElement("div");
     div.classList.add("post");
-    div.innerHTML =
-      `<h2 class="post-heading"><a href="${path}">${post.title}</a></h2>` +
+    div.innerHTML = `<h2 class="post-heading"><a href="${path}">${post.title}</a></h2>` +
       `<em>Posted ${post.post_date}</em>. ${post.initial_text}<br>${thumbnails}`;
+    if (post.i_text) {
+        div.appendChild(document.createElement("br"));
+        post.i_text.forEach((text, i) => {
+            const elem = document.createElement("a");
+            elem.href = `${path}#:~:text=${encodeURIComponent(text)}`;
+            elem.classList.add("post-i-link");
+            elem.appendChild(document.createTextNode(text));
+            div.appendChild(elem);
+        });
+    }
     return div;
   }
 
