@@ -51,22 +51,26 @@ class PostsDisplay {
     const thumbnails = post.thumbnails
       .map((src, i) => {
         src = new URL(src, this.baseUrl).href;
-        return `<a class="post-thumbnail" href="${path}#img-${i + 1}"><img src="${src}"></a>`;
+        return `<a class="post-thumbnail" href="${path}#img-${i + 1}" title="Click too see full image in context"><img src="${src}"></a>`;
       })
       .join("");
     const div = document.createElement("div");
     div.classList.add("post");
-    div.innerHTML = `<h2 class="post-heading"><a href="${path}">${post.title}</a></h2>` +
+    div.innerHTML =
+      `<h2 class="post-heading"><a href="${path}">${post.title}</a></h2>` +
       `<em>Posted ${post.post_date}</em>. ${post.initial_text}<br>${thumbnails}`;
     if (post.i_text) {
-        div.appendChild(document.createElement("br"));
-        post.i_text.forEach((text, i) => {
-            const elem = document.createElement("a");
-            elem.href = `${path}#:~:text=${encodeURIComponent(text)}`;
-            elem.classList.add("post-i-link");
-            elem.appendChild(document.createTextNode(text));
-            div.appendChild(elem);
-        });
+      div.appendChild(document.createElement("br"));
+      post.i_text.forEach((text, i) => {
+        if (i > 0) {
+          div.appendChild(document.createTextNode(", "));
+        }
+        const elem = document.createElement("a");
+        elem.href = `${path}#:~:text=${encodeURIComponent(text)}`;
+        elem.classList.add("post-i-link");
+        elem.appendChild(document.createTextNode(text));
+        div.appendChild(elem);
+      });
     }
     return div;
   }
