@@ -27,10 +27,12 @@ class PostsDisplay {
 
   constructor(parentElem, posts, urlParams) {
     this.parentElem = parentElem;
+    // Strip off anchors and query params.
     this.indexBaseUrl = location.href.replace(/#.*/, "").replace(/\?.*/, "");
-    this.baseUrl = parentElem.dataset.baseUrl || undefined;
-    if (this.baseUrl) {
-      this.baseUrl = new URL(this.baseUrl, location.href).href;
+    if (parentElem.dataset.baseUrl) {
+      this.baseUrl = new URL(parentElem.dataset.baseUrl, this.indexBaseUrl).href;
+    } else {
+      this.baseUrl = new URL(this.indexBaseUrl);
     }
     this.posts = posts;
     this.urlParams = urlParams;
