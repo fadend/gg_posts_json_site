@@ -58,7 +58,7 @@ class PostsDisplay {
     div.classList.add("post");
     div.innerHTML =
       `<h2 class="post-heading"><a href="${path}">${post.title}</a></h2>` +
-      `<em>Posted ${post.post_date}</em>. ${post.initial_text}<br>${thumbnails}`;
+      `<a class="snippet-link" href="${path}"><em>Posted ${post.post_date}</em>. ${post.initial_text}</a><br>${thumbnails}`;
     if (post.i_text) {
       div.appendChild(document.createElement("br"));
       post.i_text.forEach((text, i) => {
